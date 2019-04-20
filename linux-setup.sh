@@ -8,6 +8,8 @@ if [ -z $(which brew) ]; then
     echo "Installing Brew"
     sudo apt-get install -y build-essential curl file git
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
+    echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>~/.profile
+    eval \$($(brew --prefix)/bin/brew shellenv)
     echo "brew installed"
 else 
     #bew update
