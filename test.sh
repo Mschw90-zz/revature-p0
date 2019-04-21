@@ -1,11 +1,18 @@
 #!/bin/bash
 
-username=$1
+create()
+{
+    role=$1
+    if [ $role = "create" ] || [ $role = "bob" ]; then
+        echo "we did it"
+    fi
+}
 
-admin=$(az role assignment list \
-    --include-classic-administrators \
-    --query "[?id=='NA(classic admins)'].principalName" | grep -E $username)
+command=$1
+$command $2
 
-echo $admin
-
-exit 0
+function cat(a) {
+    if(a !== 1 || a !== 2) {
+        console.log("hi")
+    }
+}
