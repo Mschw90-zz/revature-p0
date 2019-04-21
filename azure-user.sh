@@ -13,10 +13,7 @@ admin=$(az role assignment list \
 echo $admin
 
 if ! [ -z $admin ]; then 
-    echo "im here"
-
     whichFunction=$3
-    
 
     # if $whichFunction is create it will run this conditional 
     if [ $whichFunction = "create" ]; then
@@ -57,6 +54,3 @@ else
 fi
 
 exit 0
-
-
-

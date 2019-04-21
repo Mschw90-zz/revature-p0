@@ -4,12 +4,15 @@ sudo apt update
 sudo apt -y upgrade
 
 if [ -z $(which brew) ]; then 
+
+    
     #brew install
     echo "Installing Brew"
     sudo apt-get install -y build-essential curl file git
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
     echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>~/.profile
     eval \$($(brew --prefix)/bin/brew shellenv)
+    sudo apt install linuxbrew-wrapper -y
     echo "brew installed"
 else 
     #bew update
