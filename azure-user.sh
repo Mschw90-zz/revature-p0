@@ -56,7 +56,26 @@ assign()
 
 delete()
 {
+    userprincipalname=$1
 
+
+    result=$(az ad user list --query [].userPrincipalName | grep -E /$userprincipalname/)
+
+    if [ -z $result ]; then
+        echo "the user does not currently exist"
+        exit 1
+    fi
+
+    admin=$(az role assignment list \
+    --include-classic-administrators \
+    --query "[?id=='NA(classic admins)'].principalName" | grep -E $userprincipalname)
+
+    if ! [ -z $admin ]; then
+        echo "can not delete user that is an admin"
+        exit 1
+    fi
+
+    az ad user delete --upn-or-object-id $userprincipalname
 }
 
  # login to the admin
@@ -73,7 +92,6 @@ if ! [ -z $admin ]; then
 else 
 
     echo "you must be an admin to access this file"
-
     exit 1
 
 fi
