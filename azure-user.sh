@@ -1,7 +1,7 @@
 #!/bin/bash
 
 username=$1
-password=$2
+
 
 create()
 {
@@ -59,7 +59,7 @@ delete()
     userprincipalname=$1
 
 
-    result=$(az ad user list --query [].userPrincipalName | grep -E /$userprincipalname/)
+    result=$(az ad user list --query [].userPrincipalName | grep -E $userprincipalname)
 
     if [ -z $result ]; then
         echo "the user does not currently exist"
@@ -87,8 +87,8 @@ admin=$(az role assignment list \
 
 if ! [ -z $admin ]; then 
     # where i call the functions assign delete
-    command=$3
-    $command $4 $5 $6
+    command=$2
+    $command $3 $4 $5
 else 
 
     echo "you must be an admin to access this file"

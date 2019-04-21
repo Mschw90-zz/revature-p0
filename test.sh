@@ -10,9 +10,3 @@ create()
 
 command=$1
 $command $2
-
-function cat(a) {
-    if(a !== 1 || a !== 2) {
-        console.log("hi")
-    }
-}

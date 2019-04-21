@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-if [ -n $(which git) ]; then
+if ! [ -z $(which git) ] && ! [ -z $(which node) ]; then
     git init
     npm init -y
 
