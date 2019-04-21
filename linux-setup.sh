@@ -22,8 +22,13 @@ else
 fi
 
 if [ -n $(which brew) ]; then 
+    #gcc istalling 
+    echo "installing gcc"
+    brew install gcc
+    echo "gcc installed"
+    
     #azure install
-    echo "insalling azure"
+    echo "installing azure"
     brew install azure-cli
     echo "azure installed"
 
