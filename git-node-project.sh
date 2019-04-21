@@ -3,89 +3,92 @@
 
 if [ -n $(which git) ]; then
     git init
+    npm init -y
 
-    mkdir .docker
+    mkdir repo/.docker
 
     touch \
-    .docker/dockerfile \
-    .docker/dockerup.yaml
+    repo/.docker/dockerfile \
+    repo/.docker/dockerup.yaml
 
     ## github
-    mkdir -p \
-    .github/ISSUE_TEMPLATE \
-    .github/PULL_REQUEST_TEMPLATE
+    mkdir \
+    repo/.github/ISSUE_TEMPLATE \
+    repo/.github/PULL_REQUEST_TEMPLATE
 
     touch \
-    .github/ISSUE_TEMPLATE/issue-template.md \
-    .github/PULL_REQUEST_TEMPLATE/pull-request-template.md
+    repo/.github/ISSUE_TEMPLATE/issue-template.md \
+    repo/.github/PULL_REQUEST_TEMPLATE/pull-request-template.md
 
     touch \
-    .github/CODE-OF-CONDUCT.md \
-    .github/CONTRIBUTING.md
+    repo/.github/CODE-OF-CONDUCT.md \
+    repo/.github/CONTRIBUTING.md
 
     ## root
     mkdir \
-    client \
-    src \
-    test
+    repo/client \
+    repo/src \
+    repo/test
 
     touch \
-    client/.gitkeep \
-    src/.gitkeep \
-    test/.gitkeep
+    repo/client/.gitkeep \
+    repo/src/.gitkeep \
+    repo/test/.gitkeep
 
     touch \
-    .azureup.yaml \
-    .dockerignore \
-    .editorconfig \
-    .gitignore \
-    .markdownlint.yaml \
-    CHANGELOG.md \
-    LICENSE.txt \
-    README.md
+    repo/.azureup.yaml \
+    repo/.dockerignore \
+    repo/.editorconfig \
+    repo/.gitignore \
+    repo/.markdownlint.yaml \
+    repo/CHANGELOG.md \
+    repo/LICENSE.txt \
+    repo/README.md
 else 
     ./linux-setup.sh
 
     git init
+    npm init -y
 
-    mkdir .docker
+    mkdir repo/.docker
 
     touch \
-    .docker/dockerfile \
-    .docker/dockerup.yaml
+    repo/.docker/dockerfile \
+    repo/.docker/dockerup.yaml
 
     ## github
-    mkdir -p \
-    .github/ISSUE_TEMPLATE \
-    .github/PULL_REQUEST_TEMPLATE
+    mkdir \
+    repo/.github/ISSUE_TEMPLATE \
+    repo/.github/PULL_REQUEST_TEMPLATE
 
     touch \
-    .github/ISSUE_TEMPLATE/issue-template.md \
-    .github/PULL_REQUEST_TEMPLATE/pull-request-template.md
+    repo/.github/ISSUE_TEMPLATE/issue-template.md \
+    repo/.github/PULL_REQUEST_TEMPLATE/pull-request-template.md
 
     touch \
-    .github/CODE-OF-CONDUCT.md \
-    .github/CONTRIBUTING.md
+    repo/.github/CODE-OF-CONDUCT.md \
+    repo/.github/CONTRIBUTING.md
 
     ## root
     mkdir \
-    client \
-    src \
-    test
+    repo/client \
+    repo/src \
+    repo/test
 
     touch \
-    client/.gitkeep \
-    src/.gitkeep \
-    test/.gitkeep
+    repo/client/.gitkeep \
+    repo/src/.gitkeep \
+    repo/test/.gitkeep
 
     touch \
-    .azureup.yaml \
-    .dockerignore \
-    .editorconfig \
-    .gitignore \
-    .markdownlint.yaml \
-    CHANGELOG.md \
-    LICENSE.txt \
-    README.md
+    repo/.azureup.yaml \
+    repo/.dockerignore \
+    repo/.editorconfig \
+    repo/.gitignore \
+    repo/.markdownlint.yaml \
+    repo/CHANGELOG.md \
+    repo/LICENSE.txt \
+    repo/README.md
 fi
 
+exit 0
