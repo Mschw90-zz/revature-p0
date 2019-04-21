@@ -56,7 +56,7 @@ assign()
 
 delete()
 {
-    
+
 }
 
  # login to the admin
@@ -65,9 +65,6 @@ az login -u $username
 admin=$(az role assignment list \
     --include-classic-administrators \
     --query "[?id=='NA(classic admins)'].principalName" | grep -E $username)
-
-echo $admin
-
 
 if ! [ -z $admin ]; then 
     # where i call the functions assign delete
@@ -81,4 +78,4 @@ else
 
 fi
 
-exit 0create
+exit 0
