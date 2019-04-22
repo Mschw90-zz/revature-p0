@@ -82,9 +82,6 @@ delete()
     echo "you have successfully deleted user"
 }
 
- # login to the admin
-az login -u $username 
-
 admin=$(az role assignment list \
     --include-classic-administrators \
     --query "[?id=='NA(classic admins)'].principalName" | grep -E $username)
