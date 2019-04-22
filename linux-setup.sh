@@ -2,24 +2,27 @@
 
 sudo apt update
 sudo apt -y upgrade
+sudo apt install linuxbrew-wrapper -y
+sudo apt-get install build-essential curl file git
 
-if [ -z $(which brew) ]; then 
+# if [ -z $(which brew) ]; then 
 
     
     #brew install
-    echo "Installing Brew"
+    
+    # echo "Installing Brew"
     sudo apt-get install -y build-essential curl file git
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
+    test -d ~/.linuxbrew && eval $(~/.linuxbrew/bin/brew shellenv)
+    test -d /home/linuxbrew/.linuxbrew && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+    test -r ~/.bash_profile && echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>~/.bash_profile
     echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>~/.profile
-    eval \$($(brew --prefix)/bin/brew shellenv)
-    sudo apt install linuxbrew-wrapper -y
-    echo "brew installed"
-else 
+# else 
     #bew update
-    echo "Updating bre"
-    brew upgrade
-    echo "brew updated"
-fi
+    # echo "Updating brew"
+    # brew upgrade
+    # echo "brew updated"
+# fi
 
 if [ -n $(which brew) ]; then 
     #gcc istalling 
@@ -42,5 +45,7 @@ if [ -n $(which brew) ]; then
     brew install node
     echo "node installed"
 fi
+
+echo "RESTART YOUR VM"
 
 exit 0

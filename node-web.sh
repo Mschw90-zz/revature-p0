@@ -26,8 +26,12 @@ start()
 stop()
 {
     filename=$1
+
+    #ps is used to provide information about the currently running processes
     result=$(ps | grep -E '\snode\s' | grep -E $filename)
-    echo $result
+    pid=$(pidof $result)
+    kill $pid
+    echo "node $filename was stopped"
 }
 
 command=$1
