@@ -21,6 +21,8 @@ create()
         --force-change-password-next-login \
         --password $random \
         --subscription $usersubscription
+
+        echo "you have successfully created user"
     else 
         echo "user already exist"
         exit 1
@@ -51,6 +53,7 @@ assign()
     fi
 
     az role assignment $action --assignee $username --role $role
+    echo "you have have successfully used assign"
 
 }
 
@@ -76,6 +79,7 @@ delete()
     fi
 
     az ad user delete --upn-or-object-id $userprincipalname
+    echo "you have successfully deleted user"
 }
 
  # login to the admin

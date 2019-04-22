@@ -14,6 +14,7 @@ start()
     # -e check to see if the file exist if it does it will run the node command to fun the file else return an error
     if [ -e $filename ]; then
         node $filename
+        echo "$filename started"
     else
         echo "file does not exist"
         exit 1
@@ -24,7 +25,9 @@ start()
 
 stop()
 {
-
+    filename=$1
+    result=$(ps | grep -E '\snode\s' | grep -E $filename)
+    echo $result
 }
 
 command=$1
