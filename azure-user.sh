@@ -24,8 +24,9 @@ create()
     # the name of the subscription you want to give the user
     usersubscription=$2
 
-    # creates a new user if the user doesnt already exist 
-    result=$(az ad user list --query [].userPrincipalName | grep -E $userdisplayname)
+    # uses the user list to query the array and return the object with that username if it exist 
+    # and then isolates the user principal names into an array and then checks to see if the username exist
+    result=$(az ad user list --query [].userPrincipalName | grep -E $userprincipalname)
 
     # if the user does not currently exist then create user
     if [ -n "$result" ]; then
@@ -33,6 +34,7 @@ create()
         exit 1
     fi
 
+    ## the create call ##
      az ad user create \
         --display-name $userdisplayname \
         --user-principal-name $userprincipalname \
@@ -52,7 +54,8 @@ assign()
     # the role you want to give the user "reader" or "contributor"
     role=$3
 
-    # uses the user list to query the array and return the object with that username if it exist
+    # uses the user list to query the array and return the object with that username if it exist 
+    # and then isolates the user principal names into an array and then checks to see if the username exist
     result=$(az ad user list --query [].userPrincipalName | grep -E $username)
 
     # checks to see if the user exist
@@ -72,6 +75,7 @@ assign()
         exit 1
     fi
 
+    ## the assign call ##
     az role assignment $action \
     --assignee $username \
     --role $role
@@ -79,12 +83,14 @@ assign()
 
 }
 
+## Delete Function ##
 delete()
 {
     # name of the username you want to delete
     userprincipalname=$1
 
-    #uses the user list to query the array and return the object with that username if it exist
+    # uses the user list to query the array and return the object with that username if it exist 
+    # and then isolates the user principal names into an array and then checks to see if the username exist
     result=$(az ad user list --query [].userPrincipalName | grep -E $userprincipalname)
 
     if [ -z "$result" ]; then
@@ -99,12 +105,13 @@ delete()
     --include-classic-administrators \
     --query "[?id=='NA(classic admins)'].principalName" | grep -E $userprincipalname)
 
-
+    # checks to see if the user is an admin
     if [ -n "$admin" ]; then
         echo "can not delete user that is an admin"
         exit 1
     fi
 
+    ## the delete call ##
     az ad user delete \
     --upn-or-object-id $userprincipalname
     echo "you have successfully deleted user"
@@ -117,12 +124,13 @@ admin=$(az role assignment list \
     --include-classic-administrators \
     --query "[?id=='NA(classic admins)'].principalName" | grep -E $adminUserName)
 
+# checks to see if the user is an admin
 if [ -z "$admin" ]; then 
     echo "you must be an admin to access this file"
     exit 1
 fi
 
-# where i call the functions assign delete
+# where you call the functions create, assign and delete
 command=$2
 $command $3 $4 $5
 
