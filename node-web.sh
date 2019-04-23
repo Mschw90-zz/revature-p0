@@ -26,9 +26,13 @@ start()
     result=$(cat package.json | grep -E 'start')
 
     # checks to see if start was found, if it was it will run npm start
-    if ! [ -z "$result" ]; then 
-        npm start
+    if [ -z "$result" ]; then 
+        echo "there is no start script in the package.json"
+        exit 1
     fi
+
+    # runs the start script in the package.json
+    npm start
 }
 
 stop()
@@ -50,9 +54,13 @@ stop()
     result=$(cat package.json | grep -E 'stop')
 
     # checks to see if start was found, if it was it will run npm stop
-    if ! [ -z "$result" ]; then 
-        npm stop
+    if [ -z "$result" ]; then 
+        echo "there is no stop script in the package.json"
+        exit 1
     fi
+
+    # runs the stop script in the package.json
+    npm stop
 }
 
 # the command you want to call in the script, "start" or "stop"
