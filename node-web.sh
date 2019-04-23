@@ -7,6 +7,7 @@ if [ -z "$(which node)" ]; then
    exit 1
 fi
 
+
 start()
 {   
     directory_name=$1
@@ -27,7 +28,7 @@ start()
 
 stop()
 {
-   directory_name=$1
+    directory_name=$1
 
     if ! [ -d $directory_name ]; then
         echo "this is not a directory"

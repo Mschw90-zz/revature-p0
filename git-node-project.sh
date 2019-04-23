@@ -2,6 +2,8 @@
 
 # the name of the directory that you put as an argument
 directory=$1
+
+# the user.name and user.email used to do the git config to hook up your get repo to this directory
 user_name=$2
 user_email=$3
 
@@ -22,10 +24,11 @@ fi
 ## checks to see if things are in the directory 
 ## -A means it shows all items in the directory
 if [ -n "$(ls -A $directory)" ]; then
-    echo "this directory already has files in it"
+    echo "this directory is not empty"
     exit 1
 fi
 
+## directory strucker ## 
 mkdir $directory/.docker
 
 touch \

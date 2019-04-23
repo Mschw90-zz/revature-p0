@@ -1,6 +1,6 @@
 #!/bin/bash
 
-## ubuntu
+## ubuntu update
 sudo apt update
 sudo apt -y upgrade
 sudo apt install linuxbrew-wrapper -y
