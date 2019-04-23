@@ -1,7 +1,13 @@
 #!/bin/bash
 
-username=$1
 
+# the username of the admin
+adminUserName=$1
+
+if [ -z "$(which az)" ]; then
+    echo "azure does not exist"
+    exit 1
+fi
 
 create()
 {
@@ -31,9 +37,9 @@ create()
 
 assign() 
 {
-    action=$1
     #username is the user principle name of the user you want to add role for
-    username=$2
+    username=$1
+    action=$2
     role=$3
 
     result=$(az ad user list --query [].userPrincipalName | grep -E /$username/)
@@ -50,6 +56,7 @@ assign()
 
     if [ $role != "reader" ] && [ $role != "contributor" ]; then 
         echo "this is not a valid role to assign"
+        exit 1
     fi
 
     az role assignment $action --assignee $username --role $role
@@ -84,7 +91,7 @@ delete()
 
 admin=$(az role assignment list \
     --include-classic-administrators \
-    --query "[?id=='NA(classic admins)'].principalName" | grep -E $username)
+    --query "[?id=='NA(classic admins)'].principalName" | grep -E $adminUserName)
 
 if ! [ -z $admin ]; then 
     # where i call the functions assign delete
