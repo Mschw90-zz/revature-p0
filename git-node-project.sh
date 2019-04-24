@@ -27,7 +27,7 @@ fi
 
 ## checks to see if things are in the directory 
 ## -A means it shows all items in the directory
-if [ -n "$(ls -a $directory)" ]; then
+if [ -n "$(ls -A $directory)" ]; then
     echo "this directory is not empty"
     exit 1
 fi

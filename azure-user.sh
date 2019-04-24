@@ -22,7 +22,7 @@ create()
     userdisplayname=$1
     DOMAIN=mschw90gmail.onmicrosoft.com
     userprincipalname=$userdisplayname@$DOMAIN
-    random=Thereisnopassword123!
+    password=Thereisnopassword123!
     # the name of the subscription you want to give the user
     usersubscription=$2
 
@@ -41,7 +41,7 @@ create()
         --display-name $userdisplayname \
         --user-principal-name $userprincipalname \
         --force-change-password-next-login \
-        --password $random \
+        --password $password \
         --subscription $usersubscription
     echo "you have successfully created the user"
 }
