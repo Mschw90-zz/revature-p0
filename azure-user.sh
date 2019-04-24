@@ -90,7 +90,8 @@ assign()
 delete()
 {
     # name of the username you want to delete
-    userprincipalname=$1
+    username=$1
+    userprincipalname=$username@mschw90gmail.onmicrosoft.com
 
     # uses the user list to query the array and return the object with that username if it exist 
     # and then isolates the user principal names into an array and then checks to see if the username exist
@@ -119,7 +120,6 @@ delete()
     --upn-or-object-id $userprincipalname
     echo "you have successfully deleted user"
 }
-
 
 #looks into the role assignment list and using jmespath to see if the user has an id with 
 #NA(classic admin) and returns the user-priciple-name, After you use grep to see if the
