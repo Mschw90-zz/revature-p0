@@ -1,5 +1,9 @@
 #!/bin/bash
 
+## Requirement 2 ##
+# automate the process of setting up a new git project repository structure
+# include: verify req-1 is valid, create web node-based project
+
 # the name of the directory that you put as an argument
 directory=$1
 
@@ -23,7 +27,7 @@ fi
 
 ## checks to see if things are in the directory 
 ## -A means it shows all items in the directory
-if [ -n "$(ls -A $directory)" ]; then
+if [ -n "$(ls -a $directory)" ]; then
     echo "this directory is not empty"
     exit 1
 fi
@@ -36,7 +40,7 @@ $directory/.docker/dockerfile \
 $directory/.docker/dockerup.yaml
 
 ## github
-mkdir \
+mkdir -p \
 $directory/.github/ISSUE_TEMPLATE \
 $directory/.github/PULL_REQUEST_TEMPLATE
 
@@ -69,9 +73,10 @@ $directory/CHANGELOG.md \
 $directory/LICENSE.txt \
 $directory/README.md
 
+npm init -y
 git init
 git config $user_name
 git config $user_email
-npm init -y
+
 
 exit 0

@@ -1,16 +1,18 @@
 #!/bin/bash
 
+### Requirement 3 ##
+#automate the process of creating, assigning, deleting a directory user
+#include: azure, must be admin, add role of reader or contributor to subscription, 
+#remove role of reader or contributor to subscription, delete non-admin only
 
 # the username of the admin
 adminUserName=$1
-
 
 # checks to see if az is currently installed
 if [ -z "$(which az)" ]; then
     echo "azure does not exist"
     exit 1
 fi
-
 
 ## Create Function ##
 create()
@@ -48,7 +50,8 @@ create()
 assign() 
 {
     # username is the user principle name of the user you want to add role for
-    username=$1
+    displayname=$1
+    username=$displayname@mschw90gmail.onmicrosoft.com
     # the action you want to use "create" or "delete" a role
     action=$2
     # the role you want to give the user "reader" or "contributor"
@@ -116,6 +119,7 @@ delete()
     --upn-or-object-id $userprincipalname
     echo "you have successfully deleted user"
 }
+
 
 #looks into the role assignment list and using jmespath to see if the user has an id with 
 #NA(classic admin) and returns the user-priciple-name, After you use grep to see if the

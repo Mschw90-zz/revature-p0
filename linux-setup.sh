@@ -1,5 +1,8 @@
 #!/bin/bash
 
+## Requirement 1 ##
+# automate the process of provisioning a new linux virtual machine
+
 ## ubuntu update
 sudo apt update
 sudo apt -y upgrade

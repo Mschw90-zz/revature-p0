@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# automate the process of starting, stopping a node web application
 
 #check to see if node is currently installed
 if [ -z "$(which node)" ]; then
