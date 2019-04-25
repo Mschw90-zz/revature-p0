@@ -32,48 +32,50 @@ if [ -n "$(ls -A $directory)" ]; then
     exit 1
 fi
 
+cd $directory
+npm init
+
 ## directory strucker ## 
-mkdir $directory/.docker
+mkdir .docker
 
 touch \
-$directory/.docker/dockerfile \
-$directory/.docker/dockerup.yaml
+.docker/dockerfile \
+.docker/dockerup.yaml
 
 ## github
 mkdir -p \
-$directory/.github/ISSUE_TEMPLATE \
-$directory/.github/PULL_REQUEST_TEMPLATE
+.github/ISSUE_TEMPLATE \
+.github/PULL_REQUEST_TEMPLATE
 
 touch \
-$directory/.github/ISSUE_TEMPLATE/issue-template.md \
-$directory/.github/PULL_REQUEST_TEMPLATE/pull-request-template.md
+.github/ISSUE_TEMPLATE/issue-template.md \
+.github/PULL_REQUEST_TEMPLATE/pull-request-template.md
 
 touch \
-$directory/.github/CODE-OF-CONDUCT.md \
-$directory/.github/CONTRIBUTING.md
+.github/CODE-OF-CONDUCT.md \
+.github/CONTRIBUTING.md
 
 ## root
 mkdir \
-$directory/client \
-$directory/src \
-$directory/test
+client \
+src \
+test
 
 touch \
-$directory/client/.gitkeep \
-$directory/src/.gitkeep \
-$directory/test/.gitkeep
+client/.gitkeep \
+src/.gitkeep \
+test/.gitkeep
 
 touch \
-$directory/.azureup.yaml \
-$directory/.dockerignore \
-$directory/.editorconfig \
-$directory/.gitignore \
-$directory/.markdownlint.yaml \
-$directory/CHANGELOG.md \
-$directory/LICENSE.txt \
-$directory/README.md
+.azureup.yaml \
+.dockerignore \
+.editorconfig \
+.gitignore \
+.markdownlint.yaml \
+CHANGELOG.md \
+LICENSE.txt \
+README.md
 
-npm init -y
 git init
 git config $user_name
 git config $user_email
