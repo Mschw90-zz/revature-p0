@@ -33,7 +33,7 @@ if [ -n "$(ls -A $directory)" ]; then
 fi
 
 cd $directory
-npm init
+npm init -y
 
 ## directory strucker ## 
 mkdir .docker
